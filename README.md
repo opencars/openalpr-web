@@ -1,4 +1,9 @@
+[ci]: https://circleci.com/gh/shal/openalpr-web
+[ci-badge]: https://circleci.com/gh/shal/openalpr-web.svg?style=svg
+
 # Openalpr Web
+
+[![Circle CI][ci-badge]][ci]
 
 > :mag: Web service for car plates recognition
 
@@ -6,7 +11,7 @@
 
 Tiny micro-service responsible for car license plates recognition.
 
-Thanks to @openalpr for great [library](https://github.com/openalpr/openalpr) .
+Thanks to [@openalpr](https://github.com/openalpr) for great [library](https://github.com/openalpr/openalpr).
 
 ## Documentation
 
