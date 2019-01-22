@@ -1,9 +1,9 @@
-FROM python:slim
+FROM python:2-slim
 
 LABEL maintainer Ali Shanaakh <github@shanaakh.pro>
 
-RUN apt-get update && apt-get install -y python-openalpr
-RUN pip install flask
+RUN apt-get update && apt-get install -y python-pip python-openalpr
+RUN pip install flask openalpr
 
 COPY . .
 
