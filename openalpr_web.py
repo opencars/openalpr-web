@@ -1,36 +1,32 @@
 from openalpr import Alpr
 
+from flask import Flask, jsonify, request, abort
 import json
-import tornado.ioloop
-import tornado.web
+import urllib
 
 alpr = Alpr("eu", "/etc/openalpr/openalpr.conf", "/usr/share/openalpr/runtime_data")
 alpr.set_top_n(20)
 
+app = Flask(__name__)
 
+@app.route('/v2/identify/plate', methods=['GET'])
+def v2_identify_plate():
+    image_url = request.args.get('image_url')
 
-class MainHandler(tornado.web.RequestHandler):
-    def post(self):
+    if not image_url:
+        abort(400, 'Image URL was not provided')
 
-        if 'image' not in self.request.files:
-            self.finish('Image parameter not provided')
+    url_response = urllib.urlopen(image_url)
+    jpeg_bytes = url_response.read()
 
-        fileinfo = self.request.files['image'][0]
-        jpeg_bytes = fileinfo['body']
+    if len(jpeg_bytes) <= 0:
+        abort(400, 'Image is empty')
 
-        if len(jpeg_bytes) <= 0:
-            return False
+    if len(jpeg_bytes) <= 0:
+        return
 
-        results = alpr.recognize_array(jpeg_bytes)
+    results = alpr.recognize_array(jpeg_bytes)
+    return jsonify(results)
 
-        self.finish(json.dumps(results))
-
-
-
-application = tornado.web.Application([
-    (r"/alpr", MainHandler),
-])
-
-if __name__ == "__main__":
-    application.listen(8888)
-    tornado.ioloop.IOLoop.current().start()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)
