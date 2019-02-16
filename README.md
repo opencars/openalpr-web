@@ -15,15 +15,7 @@ Thanks to [@openalpr](https://github.com/openalpr) for great [library](https://g
 
 ## Documentation
 
-Type: `GET`
-Path: `/v2/identify/plate`
-
-Parameters:
-- `image_url` - Web URL of image to be analyzed.
-
-```sh
-$ curl -v http://localhost:8080/v2/identify/plate?image_url=https://images.spot.im/v1/production/fsrnogar718twyqmdqvf
-```
+Read API [documentation](./docs/api.md).
 
 # License
 
