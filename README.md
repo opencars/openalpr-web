@@ -1,5 +1,5 @@
-[ci]: https://circleci.com/gh/shal/openalpr-web
-[ci-badge]: https://circleci.com/gh/shal/openalpr-web.svg?style=svg
+[ci]: https://circleci.com/gh/opencars/openalpr-web
+[ci-badge]: https://circleci.com/gh/opencars/openalpr-web.svg?style=svg
 
 # Openalpr Web
 
