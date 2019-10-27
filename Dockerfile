@@ -1,11 +1,14 @@
-FROM python:2-slim
+FROM python:2-slim-buster
 
 LABEL maintainer Ali Shanaakh <ashanaakh@gmail.com>
 
-RUN apt-get update && apt-get install -y python-pip python-openalpr
-RUN pip install flask openalpr
+RUN apt-get update
+
+RUN apt-get install -y python-pip python-openalpr
 
 COPY . .
+
+RUN pip install -r requirements.txt
 
 EXPOSE 8080
 
