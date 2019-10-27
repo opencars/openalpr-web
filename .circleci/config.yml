@@ -8,7 +8,7 @@ jobs:
     machine: true
     environment:
       REGISTRY: quay.io
-      DOCKER_IMG: quay.io/shal/openalpr-web
+      DOCKER_IMG: quay.io/opencars/openalpr-web
     steps:
       - checkout
       - run:
@@ -22,12 +22,12 @@ jobs:
       - run:
           name: Build docker image
           command: |
-            docker tag openalpr-web ${DOCKER_IMG}:$(echo $CIRCLE_SHA1 | cut -c -7)
+            docker tag openalpr-web ${DOCKER_IMG}:${CIRCLE_SHA1:0:8}
             docker tag openalpr-web ${DOCKER_IMG}
       - run:
           name: Push docker images
           command: |
-            docker push ${DOCKER_IMG}:$(echo $CIRCLE_SHA1 | cut -c -7)
+            docker push ${DOCKER_IMG}:${CIRCLE_SHA1:0:8}
             docker push ${DOCKER_IMG}
 
 workflows:
